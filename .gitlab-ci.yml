@@ -1,3 +1,5 @@
 test:
+  tags:
+    - shared
   script:
     - echo 'Hello, Gitlab CI !!!'
