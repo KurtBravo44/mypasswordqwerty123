@@ -1,6 +1,18 @@
 # .gitlab-ci.yml
-test:
-  tags:
-    - shared
+tags:
+  - shared
+
+hello-gitlab:
   script:
     - echo 'Hello, Gitlab CI !!!'
+
+system-info:
+  script:
+    - echo ':::System Info:::'
+    - echo 'Operation system:'
+    - uname -a
+    - echo 'Working directory:'
+    - pwd
+    - echo 'Files list'
+    - ls -la
+
