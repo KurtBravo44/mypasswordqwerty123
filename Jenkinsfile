@@ -9,7 +9,9 @@ pipeline {
 		    steps {
                 sh 'ls -la'
                 sh 'pwd'
-                ls
+                sh '''
+                   echo "Hello!" 
+                '''
             }
         }
     }
