@@ -1,21 +1,17 @@
 services:
-  github-runner:
-    image: myoung34/github-runner:latest
-    container_name: github-runner
-    environment:
-      - REPO_URL=${REPO_URL}
-      - RUNNER_TOKEN=${RUNNER_TOKEN}  
-      - RUNNER_NAME='my-runner'
-      - RUNNER_WORKDIR='/tmp/runner'
-      - LABELS='docker,self-hosted'
+  nginx:
+    image: nginx:alpine-slim
+    container_name: nginx
+    ports:
+      - '443:443'
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - github-runner:/runner/data
-      - github-runner-tmp:/tmp/runner
+      - nginx_data:/etc/nginx/conf.d
+      - serts:/etc/letsencrypt
 
 volumes:
-  github-runner:
-    name: github-runner
-  github-runner-tmp:
-    name: github-runner-tmp
+  nginx_data:
+    name: nginx_data
+  serts:
+    name: serts
+
 
