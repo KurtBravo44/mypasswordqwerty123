@@ -2,16 +2,35 @@ services:
   nginx:
     image: nginx:alpine-slim
     container_name: nginx
+    restart: unless-stopped
     ports:
       - '443:443'
     volumes:
       - nginx_data:/etc/nginx/conf.d
       - serts:/etc/letsencrypt
 
+  jenkins:
+    build:
+      context: ./jenkins
+      dockerfile: Dockerfile
+    container_name: jenkins
+    restart: unless-stopped
+    ports:
+      - '8080:8080'
+    #  - '50000:50000'  # Нет необходимости, работа с Docker API
+    environment:
+      - JENKINS_OPTS=--prefix=/jenkins
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+      
+
 volumes:
   nginx_data:
     name: nginx_data
   serts:
     name: serts
+  jenkins_home:
+    name: jenkins_home
 
 
