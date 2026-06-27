@@ -18,4 +18,4 @@ if [ -S /var/run/docker.sock ]; then
     usermod -aG docker jenkins
 fi
 # Возвращаю управление ПИД 1
-exec /usr/local/bin/jenkins.sh "$@"
+exec su jenkins -c "/usr/local/bin/jenkins.sh $*"

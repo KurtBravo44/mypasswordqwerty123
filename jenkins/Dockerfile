@@ -9,6 +9,4 @@ RUN apt-get update && apt-get install -y \
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
-USER jenkins
-
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
